@@ -1,0 +1,13 @@
+/* Super Chat / product picker button next to the chat input */
+yt-live-chat-message-input-renderer #product-picker,
+yt-live-chat-message-input-renderer #picker-buttons #product-picker,
+yt-live-chat-message-input-renderer yt-live-chat-product-picker-renderer,
+yt-live-chat-product-picker-renderer,
+yt-live-chat-paid-message-input-renderer,
+/* Anything YouTube labels as Super Chat */
+[aria-label*="Super Chat" i],
+[title*="Super Chat" i],
+/* Marked by hide.js as a fallback */
+[data-no-superchat] {
+  display: none !important;
+}

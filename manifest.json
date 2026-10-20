@@ -1,0 +1,15 @@
+{
+  "manifest_version": 3,
+  "name": "No Super Chat",
+  "version": "1.0.0",
+  "description": "Hides the Super Chat button in YouTube live chat.",
+  "content_scripts": [
+    {
+      "matches": ["*://www.youtube.com/*", "*://m.youtube.com/*"],
+      "css": ["hide.css"],
+      "js": ["hide.js"],
+      "all_frames": true,
+      "run_at": "document_start"
+    }
+  ]
+}
