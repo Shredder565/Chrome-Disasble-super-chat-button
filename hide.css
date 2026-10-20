@@ -1,13 +1,24 @@
+/* Rules only apply while hide.js has set data-nosc-hide on <html>:
+   always in "block" mode, and in "limit" mode once today's cap is reached. */
+
 /* Super Chat / product picker button next to the chat input */
-yt-live-chat-message-input-renderer #product-picker,
-yt-live-chat-message-input-renderer #picker-buttons #product-picker,
-yt-live-chat-message-input-renderer yt-live-chat-product-picker-renderer,
-yt-live-chat-product-picker-renderer,
-yt-live-chat-paid-message-input-renderer,
+html[data-nosc-hide] yt-live-chat-message-input-renderer #product-picker,
+html[data-nosc-hide] yt-live-chat-message-input-renderer #picker-buttons #product-picker,
+html[data-nosc-hide] yt-live-chat-message-input-renderer yt-live-chat-product-picker-renderer,
+html[data-nosc-hide] yt-live-chat-product-picker-renderer,
+html[data-nosc-hide] yt-live-chat-paid-message-input-renderer,
 /* Anything YouTube labels as Super Chat */
-[aria-label*="Super Chat" i],
-[title*="Super Chat" i],
+html[data-nosc-hide] [aria-label*="Super Chat" i],
+html[data-nosc-hide] [title*="Super Chat" i],
 /* Marked by hide.js as a fallback */
-[data-no-superchat] {
+html[data-nosc-hide] [data-no-superchat] {
   display: none !important;
+}
+
+/* Small "limit reached" note shown in the chat input bar */
+#nosc-notice {
+  font: 12px/1.4 Roboto, Arial, sans-serif;
+  color: var(--yt-spec-text-secondary, #606060);
+  padding: 4px 8px;
+  opacity: 0.9;
 }

@@ -1,6 +1,15 @@
 # No Super Chat
 
-A tiny Chrome / Brave extension (Manifest V3) that hides the Super Chat button in YouTube live chat.
+A tiny Chrome / Brave extension (Manifest V3) that hides the Super Chat button in YouTube live chat, or caps how much you can Super Chat per day.
+
+## Modes
+
+Click the extension icon to choose:
+
+- **Always hide the button** (default) - the Super Chat button is never shown.
+- **Daily spending limit** - the button stays until today's Super Chats reach the cap ($100 by default, editable), then it's hidden until the next day. The popup shows today's total and has a reset button.
+
+In limit mode, a purchase is counted when you press "Buy and send" in the Super Chat dialog, using the amount shown there. If a purchase is cancelled afterwards, use "Reset today's total" in the popup.
 
 ## Install
 
@@ -12,7 +21,8 @@ A tiny Chrome / Brave extension (Manifest V3) that hides the Super Chat button i
 
 ## How it works
 
-- `hide.css` hides YouTube's Super Chat / product-picker button in the live chat input bar. It also runs inside the live chat iframe.
-- `hide.js` watches for any button in the chat input bar whose label mentions "Super Chat" and hides it, as a fallback for when YouTube renames its elements.
+- `hide.js` reads your settings, decides whether the button should be hidden right now, and sets a `data-nosc-hide` attribute on the page. In limit mode it also watches for purchase clicks in the Super Chat dialog and records the amount. It runs inside the live chat iframe too.
+- `hide.css` hides YouTube's Super Chat / product-picker button while that attribute is set, with a label-based fallback for when YouTube renames its elements.
+- `popup.html` / `popup.js` are the settings popup.
 
 Chat messages and the Super Thanks button under regular videos are left alone.
