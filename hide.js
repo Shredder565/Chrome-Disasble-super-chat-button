@@ -9,7 +9,7 @@
 // ("Buy and send") in the Super Chat dialog; the amount shown in that dialog
 // is added to today's total. The total can be adjusted or reset in the popup.
 (function () {
-  const DEFAULTS = { mode: 'block', cap: 100, spent: {}, lockUntil: 0 };
+  const DEFAULTS = { mode: 'limit', cap: 100, spent: {}, lockUntil: 0 };
   const LOCK_CAP = 100;
   const SUPERCHAT_RE = /super\s*(chat|sticker)/i;
   const PURCHASE_RE = /\b(buy|purchase|send)\b/i;

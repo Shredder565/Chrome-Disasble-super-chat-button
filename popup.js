@@ -1,4 +1,4 @@
-const DEFAULTS = { mode: 'block', cap: 100, spent: {}, lockUntil: 0 };
+const DEFAULTS = { mode: 'limit', cap: 100, spent: {}, lockUntil: 0 };
 const LOCK_DAYS = 100;
 const LOCK_CAP = 100;
 
