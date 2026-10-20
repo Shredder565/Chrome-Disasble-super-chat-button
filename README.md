@@ -7,7 +7,7 @@ A tiny Chrome / Brave extension (Manifest V3) that hides the Super Chat button i
 Click the extension icon to choose:
 
 - **Always hide the button** - the Super Chat button is never shown.
-- **Daily spending limit** (default) - the button stays until today's Super Chats reach the cap ($100 by default, editable), then it's hidden until the next day. The popup shows today's total and has a reset button.
+- **Daily spending limit** (default) - the button stays until today's Super Chats reach the cap ($100 by default, editable), then it's hidden until the next day. The popup shows today's total.
 
 In limit mode, a purchase is counted when you press "Buy and send" in the Super Chat dialog, using the amount shown there.
 
