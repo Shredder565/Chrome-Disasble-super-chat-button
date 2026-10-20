@@ -4,26 +4,32 @@
 <meta charset="utf-8">
 <title>No Super Chat</title>
 <style>
-  body { font: 13px/1.5 system-ui, sans-serif; margin: 0; padding: 14px; width: 240px; color: #202124; }
+  body { font: 13px/1.5 system-ui, sans-serif; margin: 0; padding: 14px; width: 250px; color: #202124; }
   h1 { font-size: 14px; margin: 0 0 10px; }
   label { display: block; margin: 6px 0; cursor: pointer; }
   .row { display: flex; align-items: center; gap: 6px; margin: 8px 0 4px; }
   input[type="number"] { width: 80px; padding: 4px; }
   #status { margin-top: 10px; padding: 8px; background: #f1f3f4; border-radius: 6px; }
-  button { margin-top: 8px; padding: 5px 10px; cursor: pointer; }
+  button { margin-top: 10px; padding: 6px 10px; cursor: pointer; width: 100%; }
+  button:disabled { cursor: default; opacity: 0.5; }
   .muted { color: #5f6368; font-size: 12px; }
+  #locked { display: none; margin-top: 10px; padding: 8px; background: #fde7e9; border-radius: 6px; color: #8a1c1c; }
+  body.locked #locked { display: block; }
+  body.locked #settings { opacity: 0.5; pointer-events: none; }
 </style>
 </head>
 <body>
   <h1>No Super Chat</h1>
 
-  <label><input type="radio" name="mode" value="block"> Always hide the button</label>
-  <label><input type="radio" name="mode" value="limit"> Daily spending limit</label>
+  <div id="settings">
+    <label><input type="radio" name="mode" value="block"> Always hide the button</label>
+    <label><input type="radio" name="mode" value="limit"> Daily spending limit</label>
 
-  <div class="row" id="capRow">
-    <span>Cap: $</span>
-    <input type="number" id="cap" min="1" step="1">
-    <span class="muted">per day</span>
+    <div class="row" id="capRow">
+      <span>Cap: $</span>
+      <input type="number" id="cap" min="1" step="1">
+      <span class="muted">per day</span>
+    </div>
   </div>
 
   <div id="status">
@@ -31,8 +37,13 @@
     <div class="muted" id="remaining"></div>
   </div>
 
-  <button id="reset">Reset today's total</button>
-  <p class="muted">Purchases are counted when you press "Buy and send" in the Super Chat dialog.</p>
+  <div id="locked">
+    <strong>Locked</strong> - <span id="lockMode"></span><br>
+    <span id="lockDays"></span>
+  </div>
+
+  <button id="lock">Set for 100 days</button>
+  <p class="muted" id="lockHelp">Locks the current mode for 100 days. Settings can't be changed or reset until then.</p>
 
   <script src="popup.js"></script>
 </body>

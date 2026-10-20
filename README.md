@@ -9,7 +9,13 @@ Click the extension icon to choose:
 - **Always hide the button** (default) - the Super Chat button is never shown.
 - **Daily spending limit** - the button stays until today's Super Chats reach the cap ($100 by default, editable), then it's hidden until the next day. The popup shows today's total and has a reset button.
 
-In limit mode, a purchase is counted when you press "Buy and send" in the Super Chat dialog, using the amount shown there. If a purchase is cancelled afterwards, use "Reset today's total" in the popup.
+In limit mode, a purchase is counted when you press "Buy and send" in the Super Chat dialog, using the amount shown there.
+
+### Set for 100 days
+
+The **Set for 100 days** button locks in whichever mode is selected for 100 days: either no Super Chats at all, or a $100-per-day limit. While locked, the mode and cap can't be changed and the daily total can't be reset. There is no way to end the lock early from inside the extension.
+
+Note: an extension can't stop itself from being removed. If you want that too, Chrome and Brave only support it through an enterprise `ExtensionInstallForcelist` policy configured at the operating-system level.
 
 ## Install
 

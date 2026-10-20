@@ -9,7 +9,8 @@
 // ("Buy and send") in the Super Chat dialog; the amount shown in that dialog
 // is added to today's total. The total can be adjusted or reset in the popup.
 (function () {
-  const DEFAULTS = { mode: 'block', cap: 100, spent: {} };
+  const DEFAULTS = { mode: 'block', cap: 100, spent: {}, lockUntil: 0 };
+  const LOCK_CAP = 100;
   const SUPERCHAT_RE = /super\s*(chat|sticker)/i;
   const PURCHASE_RE = /\b(buy|purchase|send)\b/i;
   const AMOUNT_RE = /(?:[$€£¥]|USD|EUR|GBP|CAD|AUD)\s?(\d{1,6}(?:[.,]\d{1,2})?)/g;
@@ -26,9 +27,19 @@
     return Number(settings.spent[todayKey()] || 0);
   }
 
+  function isLocked() {
+    return Number(settings.lockUntil || 0) > Date.now();
+  }
+
+  // While locked, the cap is pinned to $100 regardless of stored settings.
+  function effectiveCap() {
+    const cap = Number(settings.cap || 0);
+    return isLocked() ? Math.min(cap, LOCK_CAP) : cap;
+  }
+
   function shouldHide() {
     if (settings.mode === 'block') return true;
-    return spentToday() >= Number(settings.cap || 0);
+    return spentToday() >= effectiveCap();
   }
 
   function applyState() {
@@ -49,7 +60,7 @@
     if (!existing) {
       const n = document.createElement('div');
       n.id = 'nosc-notice';
-      n.textContent = `Super Chat daily limit reached ($${settings.cap}). Resets tomorrow.`;
+      n.textContent = `Super Chat daily limit reached ($${effectiveCap()}). Resets tomorrow.`;
       bar.appendChild(n);
     }
   }

@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "No Super Chat",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Hides the Super Chat button in YouTube live chat, or caps Super Chat spending per day.",
   "permissions": ["storage"],
   "action": {
